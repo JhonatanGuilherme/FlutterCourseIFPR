@@ -13,7 +13,7 @@ void main(List<String> arguments) {
 
   stdout.write('Digite o valor de sua renda: ');
   var income = double.parse(stdin.readLineSync()!);
-  
+
   if (0.0 < income && income <= 2000.0) {
     print('Isento!');
   } else if (2000.0 < income && income <= 2500.0) {
