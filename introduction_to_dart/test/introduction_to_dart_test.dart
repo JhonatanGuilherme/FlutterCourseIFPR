@@ -1,4 +1,4 @@
-import 'package:flutter_course/flutter_course.dart';
+import 'package:introduction_to_dart/introduction_to_dart.dart';
 import 'package:test/test.dart';
 
 void main() {
