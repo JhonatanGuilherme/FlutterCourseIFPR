@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 
-import 'view/my_home_page.dart';
+import 'view/contact_list.dart';
+import 'view/contact_form.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  static const home = '/';
+  static const contactForm = 'contact-form';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Lista de Contatos',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Agenda de Contatos'),
+      routes: {
+        home: (context) => const ContactList(),
+        contactForm: (context) => const ContactForm()
+      },
     );
   }
 }
