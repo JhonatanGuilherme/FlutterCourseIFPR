@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ContactForm extends StatelessWidget {
-  const ContactForm({ Key? key }) : super(key: key);
+  const ContactForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,9 +9,7 @@ class ContactForm extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Criar um Contato'),
       ),
-      body: ListView(
-        
-      ),
+      body: ListView(),
     );
   }
 }
