@@ -23,22 +23,21 @@ import 'app/my_app.dart';
 */
 
 void main() async {
-  await searchingInDataBase();
-  stringFromTheFuture();
-  print('Carregando demais componentes de uma aplicação.');
+  runApp(const MyApp());
 }
 
 // void main() async {
-//   await stringFromTheFuture();
-//   runApp(const MyApp());
+//   await searchingInDataBase();
+//   stringFromTheFuture();
+//   print('Carregando demais componentes de uma aplicação.');
 // }
 
-Future searchingInDataBase() {
-  return Future.delayed(const Duration(seconds: 2),
-      () => print('É necessário ser carregado primeiro.'));
-}
+// Future searchingInDataBase() {
+//   return Future.delayed(const Duration(seconds: 2),
+//       () => print('É necessário ser carregado primeiro.'));
+// }
 
-Future stringFromTheFuture() {
-  return Future.delayed(
-      const Duration(seconds: 2), () => print('Pode ser carregado depois.'));
-}
+// Future stringFromTheFuture() {
+//   return Future.delayed(
+//       const Duration(seconds: 2), () => print('Pode ser carregado depois.'));
+// }

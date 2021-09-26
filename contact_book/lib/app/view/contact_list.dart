@@ -1,67 +1,63 @@
+import 'package:contact_book/app/database/sqlite/connection.dart';
 import 'package:flutter/material.dart';
-
 import 'package:contact_book/app/my_app.dart';
 
 class ContactList extends StatelessWidget {
-  ContactList({Key? key}) : super(key: key);
+  const ContactList({Key? key}) : super(key: key);
 
-  final list = [
-    {
-      'name': 'Renato',
-      'phone number': '(83) 986672130',
-      'avatar': 'https://pbs.twimg.com/media/BaUvJWJCMAAxeq8.jpg'
-    },
-    {
-      'name': 'Joana',
-      'phone number': '(83) 986672132',
-      'avatar':
-          'https://img.estadao.com.br/thumbs/640/resources/jpg/3/6/1630261686763.jpg'
-    },
-    {
-      'name': 'Marcos',
-      'phone number': '(83) 986672131',
-      'avatar':
-          'https://img.discogs.com/1Th4of2Ywf_6Io8EOyAMgPlhXMg=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/A-79325-1514804836-6626.jpeg.jpg'
-    }
-  ];
+  Future<List<Map<String, dynamic>>> _searchData() async {
+    var db = await Connection.get();
+
+    return db?.query('contacts');
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Lista de Contatos"),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(MyApp.contactForm);
-              },
-              icon: const Icon(Icons.add))
-        ],
-      ),
-      body: ListView.builder(
-          itemCount: list.length,
-          itemBuilder: (context, i) {
-            var contact = list[i];
-            var avatar =
-                CircleAvatar(backgroundImage: NetworkImage(contact['avatar']!));
-            return ListTile(
-              leading: avatar,
-              title: Text(contact['name']!),
-              subtitle: Text(contact['phone number']!),
-              trailing: SizedBox(
-                width: 100,
-                child: Row(
-                  children: [
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.delete),
-                    )
-                  ],
-                ),
+    return FutureBuilder<List<Map<String, dynamic>>>(
+        future: _searchData(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            var contacts = snapshot.data;
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text('Lista de Contatos'),
+                actions: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(MyApp.contactForm);
+                      },
+                      icon: const Icon(Icons.add))
+                ],
               ),
+              body: ListView.builder(
+                  itemCount: contacts?.length,
+                  itemBuilder: (context, i) {
+                    var contact = contacts?[i];
+                    var avatar = CircleAvatar(
+                        backgroundImage: NetworkImage(contact?['url_avatar']));
+                    return ListTile(
+                      leading: avatar,
+                      title: Text(contact?['name']),
+                      subtitle: Text(contact?['phone_number']),
+                      trailing: SizedBox(
+                        width: 100,
+                        child: Row(
+                          children: [
+                            IconButton(
+                                onPressed: () {}, icon: const Icon(Icons.edit)),
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.delete),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
             );
-          }),
-    );
+          } else {
+            return const Scaffold();
+          }
+        });
   }
 }
