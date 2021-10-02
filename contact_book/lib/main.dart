@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'app/my_app.dart';
+import 'package:flutter/material.dart';
+import 'package:contact_book/app/injection.dart';
 
 /*
   O desenvolvimento assíncrono em si é um recurso fundamental para
@@ -23,6 +24,7 @@ import 'app/my_app.dart';
 */
 
 void main() async {
+  setupInjection();
   runApp(const MyApp());
 }
 

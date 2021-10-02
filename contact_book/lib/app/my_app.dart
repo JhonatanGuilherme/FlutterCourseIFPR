@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'view/contact_list.dart';
 import 'view/contact_form.dart';
+import 'view/contact_list.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

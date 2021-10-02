@@ -1,0 +1,9 @@
+import 'package:get_it/get_it.dart';
+import 'domain/interfaces/contact_dao.dart';
+import 'database/sqlite/dao/contact_dao_impl.dart';
+
+setupInjection() {
+  GetIt getIt = GetIt.I;
+
+  getIt.registerSingleton<ContactDAO>(ContactDAOImpl());
+}

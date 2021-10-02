@@ -1,19 +1,18 @@
-import 'package:contact_book/app/database/sqlite/connection.dart';
 import 'package:flutter/material.dart';
 import 'package:contact_book/app/my_app.dart';
+import 'package:contact_book/app/domain/entities/contact.dart';
+import 'package:contact_book/app/database/sqlite/dao/contact_dao_impl.dart';
 
 class ContactList extends StatelessWidget {
   const ContactList({Key? key}) : super(key: key);
 
-  Future<List<Map<String, dynamic>>> _searchData() async {
-    var db = await Connection.get();
-
-    return db?.query('contacts');
+  Future<List<Contact>> _searchData() async {
+    return ContactDAOImpl().find();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Map<String, dynamic>>>(
+    return FutureBuilder<List<Contact>>(
         future: _searchData(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -34,11 +33,11 @@ class ContactList extends StatelessWidget {
                   itemBuilder: (context, i) {
                     var contact = contacts?[i];
                     var avatar = CircleAvatar(
-                        backgroundImage: NetworkImage(contact?['url_avatar']));
+                        backgroundImage: NetworkImage(contact!.urlAvatar!));
                     return ListTile(
                       leading: avatar,
-                      title: Text(contact?['name']),
-                      subtitle: Text(contact?['phone_number']),
+                      title: Text(contact.name!),
+                      subtitle: Text(contact.phoneNumber!),
                       trailing: SizedBox(
                         width: 100,
                         child: Row(
