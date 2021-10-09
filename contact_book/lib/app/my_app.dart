@@ -16,9 +16,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        home: (context) => const ContactList(),
+        home: (context) => ContactList(),
         contactForm: (context) => const ContactForm()
       },
+      debugShowCheckedModeBanner: false,
     );
   }
 }

@@ -37,11 +37,13 @@ void main(List<String> arguments) {
   names.forEach(printNames);
 
   print('FOR EACH DIRECTLY BY LIST CALLING ANONYMOUS FUNCTION');
+  // ignore: avoid_function_literals_in_foreach_calls
   names.forEach((name) {
     print(name);
   });
 
   print('FOR EACH DIRECTLY BY LIST CALLING ARROW FUNCTION');
+  // ignore: avoid_function_literals_in_foreach_calls
   names.forEach((name) => print(name));
 
   print('FOR EACH DIRECTLY BY LIST CALLING PRINT FUNCTION');

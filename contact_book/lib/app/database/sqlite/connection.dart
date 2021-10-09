@@ -8,6 +8,7 @@ class Connection {
   static get() async {
     if (_database == null) {
       var path = join(await getDatabasesPath(), 'database.db');
+      deleteDatabase(path);
       _database ??= await openDatabase(
         path,
         version: 1,

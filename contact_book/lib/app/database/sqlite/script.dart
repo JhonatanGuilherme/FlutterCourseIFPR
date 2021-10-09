@@ -1,9 +1,9 @@
 const createTable = '''
   CREATE TABLE contacts(
-    id INT PRIMARY KEY,
+    id INTEGER NOT NULL PRIMARY KEY,
     name VARCHAR(200) NOT NULL,
     phone_number CHAR(16) NOT NULL,
-    email VARCHAR(150) NOT NULL,
+    email VARCH AR(150) NOT NULL,
     url_avatar VARCHAR(300) NOT NULL
   )
 ''';
